@@ -1,54 +1,17 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>صالح للمقاولات والتسويق العقاري</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --gold: #c9a227;
-    --gold-light: #e8c84a;
-    --gold-pale: #f0d878;
-    --dark: #0a0a0a;
-    --dark2: #111111;
-    --dark3: #1a1a1a;
-    --white: #ffffff;
-    --gray: #888;
-  }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+موقع رسمي لشركة صالح للمقاولات والتسويق العقاري
 
-  body {
-    font-family: 'Cairo', sans-serif;
-    background: var(--dark);
-    color: var(--white);
-    overflow-x: hidden;
-  }
+## 📍 العنوان
+بنها — القليوبية — مصر  
+شارع الملك فاروق، أمام فندق القوات المسلحة
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 18px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201,162,39,0.2);
-  }
+## 📞 التواصل
+- هاتف: 01010892928
+- واتساب: [اضغط هنا](https://wa.me/201010892928)
 
-  .nav-logo {
-    display: flex; align-items: center; gap: 14px;
-  }
-
-  .nav-logo img {
-    height: 52px; width: 52px; object-fit: contain;
-  }
-
-  .nav-logo-text {
-    font-family: 'Cairo', sans-serif;
-    font-size: 1.1rem; font-weight: 700; color: var(--white);
+## 🌐 الموقع
+[زيارة الموقع](https://salehrealestate.github.io/salehreal...): var(--white);
     line-height: 1.2;
   }
 
