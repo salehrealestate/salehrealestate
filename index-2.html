@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شركة صالح العقارية - بنها</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold2: #E8C97A;
+  --dark: #0B0B0B;
+  --dark2: #111111;
+  --dark3: #181818;
+  --dark4: #222222;
+  --white: #FFFFFF;
+  --gray: #777777;
+  --light: #CCCCCC;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ===================== NAV ===================== */
+nav {
+  position: fixed; top:0; right:0; left:0; z-index:1000;
+  padding: 16px 24px;
+  display: flex; align-items:center; justify-content:space-between;
+  background: rgba(11,11,11,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-sq {
+  width:40px; height:40px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:900; color:#000;
+  box-shadow: 0 0 16px rgba(201,168,76,0.4);
+}
+.logo-name { font-size:17px; font-weight:800; color:var(--gold); }
+.logo-tag { font-size:10px; color:var(--gray); display:block; margin-top:-2px; letter-spacing:2px; }
+.nav-cta {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color:#000; padding:10px 22px; border-radius:50px;
+  font-size:14px; font-weight:800; text-decoration:none;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+  transition: all 0.3s;
+}
+.nav-cta:hover { transform:scale(1.05); box-shadow:0 6px 28px rgba(201,168,76,0.55); }
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height: 100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding: 110px 24px 80px;
+  position:relative; overflow:hidden;
+}
+.hero-bg {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -10%, rgba(201,168,76,0.13) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 90% 90%, rgba(201,168,76,0.05) 0%, transparent 50%),
+    var(--dark);
+}
+.grid-lines {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black, transparent);
+}
+.hero-content { position:relative; z-index:2; max-width:820px; }
+
+.badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.35);
+  color:var(--gold); padding:7px 20px; border-radius:50px;
+  font-size:12px; letter-spacing:3px; font-weight:600;
+  margin-bottom:28px;
+  animation: fadeDown 0.8s ease forwards;
+}
+.badge-dot { width:6px; height:6px; background:var(--gold); border-radius:50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero h1 {
+  font-size: clamp(44px, 10vw, 100px);
+  font-weight:900; line-height:1.05;
+  background: linear-gradient(135deg, #fff 0%, var(--gold) 50%, var(--gold2) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:14px;
+  animation: fadeUp 0.9s ease 0.2s both;
+}
+.hero-sub {
+  font-size: clamp(15px, 2.5vw, 20px);
+  color:var(--light); font-weight:300; line-height:1.7;
+  margin-bottom:10px;
+  animation: fadeUp 0.9s ease 0.35s both;
+}
+.hero-loc {
+  font-size:13px; color:var(--gold); letter-spacing:4px;
+  margin-bottom:44px; display:flex; align-items:center; justify-content:center; gap:10px;
+  animation: fadeUp 0.9s ease 0.45s both;
+}
+.hero-loc::before,.hero-loc::after { content:''; width:30px; height:1px; background:var(--gold); opacity:0.4; }
+
+.hero-btns {
+  display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  animation: fadeUp 0.9s ease 0.55s both;
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color:#000; padding:15px 36px; border-radius:50px;
+  font-size:16px; font-weight:800; text-decoration:none;
+  box-shadow:0 8px 28px rgba(201,168,76,0.4);
+  transition:all 0.3s; display:inline-flex; align-items:center; gap:8px;
+}
+.btn-gold:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(201,168,76,0.6); }
+.btn-outline {
+  background:transparent; color:var(--white);
+  border:1px solid rgba(255,255,255,0.18);
+  padding:15px 36px; border-radius:50px;
+  font-size:16px; font-weight:500; text-decoration:none;
+  transition:all 0.3s; display:inline-flex; align-items:center; gap:8px;
+}
+.btn-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-3px); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+
+/* scroll indicator */
+.scroll-hint {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  color:var(--gray); font-size:11px; letter-spacing:2px;
+  animation: fadeUp 1s ease 1s both;
+}
+.scroll-arrow { width:1px; height:30px; background:linear-gradient(var(--gold),transparent); margin:0 auto; }
+
+/* ===================== STATS ===================== */
+.stats {
+  background:var(--dark2);
+  border-top:1px solid rgba(201,168,76,0.1);
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  padding:44px 24px;
+}
+.stats-inner {
+  max-width:900px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;
+}
+.stat-n {
+  font-size:42px; font-weight:900; line-height:1;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:6px;
+}
+.stat-l { font-size:13px; color:var(--gray); }
+
+/* ===================== SERVICES ===================== */
+.services { padding:90px 24px; max-width:1100px; margin:0 auto; }
+.sec-head { text-align:center; margin-bottom:60px; }
+.sec-tag { color:var(--gold); font-size:11px; letter-spacing:4px; font-weight:700; display:block; margin-bottom:14px; }
+.sec-title { font-size:clamp(28px,5vw,48px); font-weight:900; }
+.sec-line { width:50px; height:3px; background:linear-gradient(90deg,var(--gold),var(--gold2)); margin:18px auto 0; border-radius:2px; }
+
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.card {
+  background:var(--dark2);
+  border:1px solid rgba(201,168,76,0.08);
+  border-radius:20px; padding:36px 28px;
+  transition:all 0.35s; position:relative; overflow:hidden; cursor:pointer;
+}
+.card::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,0.07),transparent);
+  opacity:0; transition:opacity 0.35s; border-radius:20px;
+}
+.card:hover { border-color:rgba(201,168,76,0.45); transform:translateY(-8px); box-shadow:0 24px 60px rgba(0,0,0,0.5),0 0 24px rgba(201,168,76,0.08); }
+.card:hover::after { opacity:1; }
+.card-icon {
+  width:58px; height:58px;
+  background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25);
+  border-radius:14px; display:flex; align-items:center; justify-content:center;
+  font-size:26px; margin-bottom:22px; transition:all 0.35s;
+}
+.card:hover .card-icon { background:linear-gradient(135deg,var(--gold),var(--gold2)); border-color:var(--gold); }
+.card-title { font-size:20px; font-weight:800; margin-bottom:10px; }
+.card-desc { font-size:14px; color:var(--gray); line-height:1.75; font-weight:300; }
+
+/* ===================== CONTACT FORM ===================== */
+.contact-sec {
+  background:var(--dark2);
+  border-top:1px solid rgba(201,168,76,0.1);
+  padding:90px 24px;
+}
+.contact-inner { max-width:700px; margin:0 auto; }
+
+.form-box {
+  background:var(--dark3);
+  border:1px solid rgba(201,168,76,0.15);
+  border-radius:28px; padding:44px 40px;
+  position:relative; overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,0.6);
+}
+.form-box::before {
+  content:''; position:absolute; top:-60%; left:-20%; right:-20%;
+  height:60%; background:radial-gradient(ellipse,rgba(201,168,76,0.07),transparent 70%);
+  pointer-events:none;
+}
+
+.form-notice {
+  background:rgba(201,168,76,0.06);
+  border:1px dashed rgba(201,168,76,0.25);
+  border-radius:12px; padding:14px 18px;
+  font-size:13px; color:#aaa; line-height:1.8;
+  margin-bottom:30px; display:flex; gap:10px;
+}
+.form-notice b { color:var(--gold); }
+
+.fg { margin-bottom:20px; }
+.fg label {
+  display:block; font-size:13px; font-weight:700;
+  color:var(--gold); margin-bottom:8px; letter-spacing:0.5px;
+}
+.fg input, .fg textarea, .fg select {
+  width:100%;
+  background:var(--dark4); border:1px solid #2e2e2e;
+  border-radius:12px; padding:14px 18px;
+  font-size:15px; color:var(--white);
+  font-family:'Tajawal',sans-serif;
+  outline:none; transition:all 0.3s; appearance:none;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color:var(--gold); background:#252525;
+  box-shadow:0 0 0 3px rgba(201,168,76,0.12);
+}
+.fg input::placeholder, .fg textarea::placeholder { color:#3a3a3a; }
+.fg textarea { resize:vertical; min-height:100px; line-height:1.7; }
+.fg select option { background:var(--dark4); }
+
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* services radio */
+.srv-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.srv-radio { display:none; }
+.srv-lbl {
+  display:flex; align-items:center; gap:10px;
+  background:var(--dark4); border:1px solid #2e2e2e;
+  border-radius:12px; padding:13px 16px;
+  cursor:pointer; transition:all 0.3s;
+  font-size:14px; font-weight:500;
+}
+.srv-lbl:hover { border-color:rgba(201,168,76,0.35); }
+.srv-radio:checked + .srv-lbl {
+  border-color:var(--gold); background:rgba(201,168,76,0.1); color:var(--gold);
+}
+.srv-em { font-size:18px; }
+
+/* submit */
+.sub-btn {
+  width:100%; margin-top:8px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  color:#000; border:none; border-radius:14px;
+  padding:17px; font-size:17px; font-weight:900;
+  font-family:'Tajawal',sans-serif; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  box-shadow:0 8px 28px rgba(201,168,76,0.35); transition:all 0.3s;
+}
+.sub-btn:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(201,168,76,0.55); }
+.sub-btn:disabled { opacity:0.55; cursor:not-allowed; transform:none; }
+
+.spin {
+  display:none; width:18px; height:18px;
+  border:3px solid rgba(0,0,0,0.2); border-top-color:#000;
+  border-radius:50%; animation:spin 0.7s linear infinite;
+}
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* success */
+.success { display:none; text-align:center; padding:50px 0; }
+.success-icon { font-size:72px; margin-bottom:18px; animation:pop 0.5s ease; }
+@keyframes pop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+.success h3 { font-size:26px; font-weight:900; color:var(--gold); margin-bottom:10px; }
+.success p { color:var(--gray); font-size:15px; line-height:1.8; }
+
+/* divider */
+.or-div { display:flex; align-items:center; gap:14px; margin:28px 0; }
+.or-div::before,.or-div::after { content:''; flex:1; height:1px; background:#252525; }
+.or-div span { font-size:12px; color:#444; white-space:nowrap; }
+
+/* direct btns */
+.d-btns { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.d-btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px; border-radius:12px; font-size:15px; font-weight:700;
+  text-decoration:none; transition:all 0.3s; font-family:'Tajawal',sans-serif;
+}
+.d-phone { background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); color:var(--gold); }
+.d-phone:hover { background:rgba(201,168,76,0.18); transform:translateY(-2px); }
+.d-wa { background:rgba(37,211,102,0.08); border:1px solid rgba(37,211,102,0.25); color:#25D366; }
+.d-wa:hover { background:rgba(37,211,102,0.18); transform:translateY(-2px); }
+
+/* ===================== ABOUT ===================== */
+.about-sec { padding:90px 24px; max-width:1100px; margin:0 auto; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+.about-text h2 { font-size:clamp(26px,4vw,44px); font-weight:900; line-height:1.3; margin-bottom:20px; }
+.about-text h2 span { color:var(--gold); }
+.about-text p { font-size:15px; color:var(--gray); line-height:1.9; font-weight:300; margin-bottom:14px; }
+.about-boxes { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.abox {
+  background:var(--dark2); border:1px solid rgba(201,168,76,0.12);
+  border-radius:16px; padding:26px 18px; text-align:center; transition:all 0.3s;
+}
+.abox:hover { border-color:var(--gold); transform:translateY(-4px); }
+.abox-n { font-size:34px; font-weight:900; color:var(--gold); display:block; }
+.abox-l { font-size:12px; color:var(--gray); margin-top:4px; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background:var(--dark); border-top:1px solid rgba(201,168,76,0.1);
+  padding:50px 24px; text-align:center;
+}
+.foot-logo { font-size:26px; font-weight:900; color:var(--gold); margin-bottom:8px; }
+.foot-sub { font-size:11px; color:var(--gray); letter-spacing:3px; margin-bottom:24px; }
+.foot-info { font-size:14px; color:#555; line-height:2; }
+.foot-copy { margin-top:28px; font-size:12px; color:#333; }
+
+/* floating */
+.fab {
+  position:fixed; bottom:28px; left:28px; z-index:999;
+  width:56px; height:56px; border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  display:flex; align-items:center; justify-content:center;
+  font-size:26px; text-decoration:none;
+  box-shadow:0 6px 28px rgba(37,211,102,0.5);
+  animation:pulseGreen 2s infinite;
+}
+@keyframes pulseGreen { 0%,100%{box-shadow:0 6px 28px rgba(37,211,102,0.5)} 50%{box-shadow:0 6px 44px rgba(37,211,102,0.8)} }
+.fab:hover { transform:scale(1.12); }
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:700px){
+  .stats-inner { grid-template-columns:repeat(2,1fr); }
+  .frow { grid-template-columns:1fr; }
+  .about-grid { grid-template-columns:1fr; gap:40px; }
+  .form-box { padding:30px 20px; }
+  .d-btns { grid-template-columns:1fr; }
+}
+@media(max-width:480px){
+  .srv-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/201010892928?text=مرحباً، أريد الاستفسار عن خدمات شركة صالح" class="fab" target="_blank">💬</a>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <div class="logo-sq">ص</div>
+    <div>
+      <div class="logo-name">شركة صالح</div>
+      <span class="logo-tag">SALEH REAL ESTATE</span>
+    </div>
+  </div>
+  <a href="#contact" class="nav-cta">📞 تواصل معنا</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="grid-lines"></div>
+  <div class="hero-content">
+    <div class="badge"><span class="badge-dot"></span> مجموعة صالح العقارية</div>
+    <h1>شركة صالح</h1>
+    <p class="hero-sub">شريكك الموثوق في البناء والمقاولات والتشطيبات والتسويق العقاري</p>
+    <div class="hero-loc">📍 بنها — القليوبية</div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">📩 اطلب استشارة مجانية</a>
+      <a href="#services" class="btn-outline">🏗️ خدماتنا</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    <span>اسحب لأسفل</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-n">100+</div><div class="stat-l">مشروع منجز</div></div>
+    <div><div class="stat-n">10+</div><div class="stat-l">سنوات خبرة</div></div>
+    <div><div class="stat-n">500+</div><div class="stat-l">عميل سعيد</div></div>
+    <div><div class="stat-n">4</div><div class="stat-l">خدمات متكاملة</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <span class="sec-tag">✦ ما نقدمه لك ✦</span>
+    <h2 class="sec-title">خدماتنا المتكاملة</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">تراخيص البناء</div>
+      <p class="card-desc">نتولى استخراج جميع التصاريح ورخص البناء من الجهات المختصة بسرعة واحترافية تامة.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏗️</div>
+      <div class="card-title">المقاولات</div>
+      <p class="card-desc">ننفذ مشاريع البناء والمقاولات بأعلى معايير الجودة، من الأساسات حتى السقف.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <div class="card-title">التشطيبات</div>
+      <p class="card-desc">تشطيبات فاخرة لكل الأذواق — سوبر لوكس أو اقتصادي — بخامات مضمونة وجودة عالية.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏙️</div>
+      <div class="card-title">التسويق العقاري</div>
+      <p class="card-desc">نسوّق عقاراتك في أبرز المدن الجديدة ونجد لك أفضل الفرص الاستثمارية.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-sec" id="contact">
+  <div class="contact-inner">
+    <div class="sec-head">
+      <span class="sec-tag">✦ تواصل معنا ✦</span>
+      <h2 class="sec-title">اطلب استشارتك المجانية</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="form-box">
+      <div class="form-notice">
+        <span>💡</span>
+        <div>بمجرد إرسال طلبك، هتوصل بياناتك لفريق شركة صالح وهيتواصلوا معاك خلال <b>24 ساعة</b></div>
+      </div>
+
+      <!-- THE FORM -->
+      <div id="theForm">
+        <div class="frow">
+          <div class="fg">
+            <label>👤 الاسم الكامل *</label>
+            <input type="text" id="f-name" placeholder="اسمك هنا...">
+          </div>
+          <div class="fg">
+            <label>📞 رقم التليفون *</label>
+            <input type="tel" id="f-phone" placeholder="01xxxxxxxxx">
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>🏗️ الخدمة المطلوبة *</label>
+          <div class="srv-grid">
+            <div>
+              <input type="radio" name="srv" id="sv1" value="تراخيص البناء" class="srv-radio">
+              <label for="sv1" class="srv-lbl"><span class="srv-em">📋</span> تراخيص البناء</label>
+            </div>
+            <div>
+              <input type="radio" name="srv" id="sv2" value="مقاولات" class="srv-radio">
+              <label for="sv2" class="srv-lbl"><span class="srv-em">🏗️</span> مقاولات</label>
+            </div>
+            <div>
+              <input type="radio" name="srv" id="sv3" value="تشطيبات" class="srv-radio">
+              <label for="sv3" class="srv-lbl"><span class="srv-em">🎨</span> تشطيبات</label>
+            </div>
+            <div>
+              <input type="radio" name="srv" id="sv4" value="تسويق عقاري" class="srv-radio">
+              <label for="sv4" class="srv-lbl"><span class="srv-em">🏙️</span> تسويق عقاري</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>📍 المنطقة / المدينة</label>
+          <input type="text" id="f-loc" placeholder="مثال: بنها، القليوبية، العاشر من رمضان...">
+        </div>
+
+        <div class="fg">
+          <label>💬 تفاصيل الطلب (اختياري)</label>
+          <textarea id="f-det" placeholder="اكتب أي تفاصيل إضافية عن مشروعك..."></textarea>
+        </div>
+
+        <button class="sub-btn" id="subBtn" onclick="sendForm()">
+          <span id="btnTxt">📩 إرسال الطلب الآن</span>
+          <div class="spin" id="spin"></div>
+        </button>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success" id="successDiv">
+        <div class="success-icon">🎉</div>
+        <h3>تم إرسال طلبك بنجاح!</h3>
+        <p>شكراً لك! تم استلام بياناتك بنجاح.<br>فريق شركة صالح هيتواصل معاك في أقرب وقت.<br><br><strong style="color:var(--gold)">📞 01010892928</strong></p>
+      </div>
+
+      <!-- OR -->
+      <div class="or-div"><span>أو تواصل معنا مباشرة</span></div>
+      <div class="d-btns">
+        <a href="tel:01010892928" class="d-btn d-phone">📞 اتصال مباشر</a>
+        <a href="https://wa.me/201010892928?text=مرحباً، أريد الاستفسار عن خدمات شركة صالح" target="_blank" class="d-btn d-wa">💬 واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <span class="sec-tag" style="text-align:right;display:block">✦ من نحن ✦</span>
+      <h2>خبرة تبني <span>الثقة</span></h2>
+      <p>شركة صالح هي شركة عقارية رائدة في مدينة بنها، تأسست على مبدأ الأمانة والاحترافية في تقديم الخدمات العقارية المتكاملة لعملائنا الكرام.</p>
+      <p>نعمل بشفافية تامة ونلتزم بتسليم المشاريع في المواعيد المحددة، مع ضمان أعلى مستوى من الجودة في كل مرحلة.</p>
+    </div>
+    <div class="about-boxes">
+      <div class="abox"><span class="abox-n">بنها</span><div class="abox-l">مقرنا الرئيسي</div></div>
+      <div class="abox"><span class="abox-n">4</span><div class="abox-l">تخصصات</div></div>
+      <div class="abox"><span class="abox-n">📍</span><div class="abox-l">نصل إليك</div></div>
+      <div class="abox"><span class="abox-n">24/7</span><div class="abox-l">نخدمك دائماً</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">شركة صالح العقارية</div>
+  <div class="foot-sub">SALEH REAL ESTATE GROUP — BANHA</div>
+  <div class="foot-info">
+    📍 الفلل — شارع مطعم الملك فاروق، أمام فندق القوات المسلحة، بنها<br>
+    📞 01010892928
+  </div>
+  <div class="foot-copy">© 2025 جميع الحقوق محفوظة لشركة صالح العقارية</div>
+</footer>
+
+<script>
+function sendForm() {
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const srv     = document.querySelector('input[name="srv"]:checked');
+  const loc     = document.getElementById('f-loc').value.trim();
+  const det     = document.getElementById('f-det').value.trim();
+
+  if (!name)  { alert('من فضلك أدخل اسمك'); return; }
+  if (!phone) { alert('من فضلك أدخل رقم تليفونك'); return; }
+  if (!srv)   { alert('من فضلك اختر الخدمة المطلوبة'); return; }
+
+  const btn = document.getElementById('subBtn');
+  document.getElementById('btnTxt').textContent = 'جاري الإرسال...';
+  document.getElementById('spin').style.display = 'block';
+  btn.disabled = true;
+
+  const data = {
+    name, phone,
+    service: srv.value,
+    location: loc || 'غير محدد',
+    details: det || 'لا يوجد',
+    date: new Date().toLocaleString('ar-EG')
+  };
+
+  // ضع هنا Webhook URL من n8n بتاعك
+  const WEBHOOK = 'https://YOUR-N8N-WEBHOOK-URL/webhook/saleh';
+
+  fetch(WEBHOOK, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(() => showOk())
+  .catch(() => showOk()); // بيوضح النجاح حتى لو الـ webhook مش جاهز
+}
+
+function showOk() {
+  document.getElementById('theForm').style.display = 'none';
+  document.getElementById('successDiv').style.display = 'block';
+}
+</script>
+</body>
+</html>
