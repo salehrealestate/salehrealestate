@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALEH — دليلك العقاري الذكي</title>
+<style>
+.region-bar {
+  position:relative; z-index:10;
+  background: #111;
+  padding: 12px 40px;
+  display:flex; align-items:center; gap:12px;
+  overflow-x:auto; border-bottom: 1px solid rgba(184,134,11,0.2);
+  scrollbar-width:none;
+}
+.region-bar::-webkit-scrollbar { display:none; }
+.region-label {
+  color: #8A7F72;
+  font-size: 12px; font-weight:700; letter-spacing:1px;
+  white-space:nowrap; flex-shrink:0;
+}
+.region-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #ccc;
+  padding: 7px 18px; border-radius: 20px;
+  font-family:'Tajawal',sans-serif;
+  font-size: 13px; font-weight:600;
+  cursor:pointer; transition:all 0.25s;
+  white-space:nowrap; flex-shrink:0;
+}
+.region-btn:hover { border-color: rgba(184,134,11,0.5); color:#fff; }
+.region-btn.active {
+  background: linear-gradient(135deg,#B8860B,#D4A017);
+  border-color: transparent; color:#111;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg: #0A0A0A;
+  --card: #111111;
+  --dark: #000000;
+  --gold: #C9A81E;
+  --gold2: #F0D060;
+  --green: #C9A81E;
+  --green2: #F0D060;
+  --blue: #C9A81E;
+  --blue2: #F0D060;
+  --red: #C9A81E;
+  --text: #F0EDE8;
+  --muted: #7A7060;
+  --border: #2A2418;
+}
+
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Texture */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8860B' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none; z-index:0;
+}
+
+/* Header */
+header::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,#C9A81E,#F0D060,#C9A81E,transparent); }
+header {
+  position:relative; z-index:10;
+  background: var(--dark);
+  padding: 20px 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom: 3px solid var(--gold);
+}
+
+.logo-text {
+  font-size: 22px; font-weight: 900; color: var(--gold);
+  letter-spacing: -0.5px;
+}
+.logo-text span { color: #fff; font-weight: 300; }
+
+.header-badge {
+  background: rgba(184,134,11,0.15);
+  border: 1px solid rgba(184,134,11,0.4);
+  color: var(--gold2);
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+}
+
+/* Hero */
+.hero {
+  position:relative; z-index:5;
+  text-align:center;
+  padding: 64px 24px 48px;
+}
+
+.hero-eyebrow {
+  display:inline-block;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 18px; border-radius: 4px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+  border-bottom: 3px solid var(--gold2);
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 17px; font-weight: 400;
+  max-width: 480px; margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Goal Selector */
+.selector-wrap {
+  position:relative; z-index:5;
+  max-width: 900px; margin: 0 auto;
+  padding: 0 24px 24px;
+}
+
+
+.selector-label {
+  text-align:center;
+  font-size: 13px; font-weight: 700;
+  color: var(--gold); letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.goal-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.goal-tab {
+  background: #111100;
+  border: 2px solid rgba(201,168,30,0.15);
+  border-radius: 16px;
+  padding: 22px 16px;
+  text-align:center;
+  cursor:pointer;
+  transition: all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.goal-tab::before {
+  content:'';
+  position:absolute; inset:0;
+  opacity:0; transition: opacity 0.3s;
+}
+
+.goal-tab:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+.goal-tab.active-sakan { border-color: var(--gold); background: #1A1500; }
+.goal-tab.active-sakan::before { background: linear-gradient(135deg, rgba(201,168,30,0.08), transparent); opacity:1; }
+
+.goal-tab.active-invest { border-color: var(--gold); background: #1A1500; }
+.goal-tab.active-invest::before { background: linear-gradient(135deg, rgba(201,168,30,0.08), transparent); opacity:1; }
+
+.goal-tab.active-both { border-color: var(--gold); background: #1A1500; }
+.goal-tab.active-both::before { background: linear-gradient(135deg, rgba(201,168,30,0.08), transparent); opacity:1; }
+
+.goal-tab.active-taqlib { border-color: var(--gold); background: #1A1500; }
+
+.tab-icon { font-size: 32px; margin-bottom: 10px; display:block; }
+.tab-title { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.tab-sub { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+.check-mark {
+  position:absolute; top:10px; left:10px;
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:900;
+  opacity:0; transition: opacity 0.3s;
+}
+
+.active-sakan .check-mark { background:var(--gold); color:#000; opacity:1; }
+.active-invest .check-mark { background:var(--gold); color:#fff; opacity:1; }
+.active-both .check-mark { background:var(--gold); color:#000; opacity:1; }
+.active-taqlib .check-mark { background:var(--gold); color:#000; opacity:1; }
+
+/* Content Panels */
+.content-area {
+  max-width: 900px; margin: 0 auto;
+  padding: 0 24px 80px;
+  position:relative; z-index:5;
+}
+
+.panel { display:none; animation: slideUp 0.5s ease forwards; }
+.panel.visible { display:block; }
+
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Panel Header */
+.panel-header {
+  border-radius: 20px 20px 0 0;
+  padding: 32px 40px;
+  margin-bottom: 0;
+}
+
+.panel-sakan .panel-header { background: linear-gradient(135deg, #1A1200 0%, #2A2000 100%); border-bottom: 2px solid var(--gold); }
+.panel-invest .panel-header { background: linear-gradient(135deg, #1A1200 0%, #2A2000 100%); border-bottom: 2px solid var(--gold); }
+.panel-both .panel-header { background: linear-gradient(135deg, #1A1200 0%, #2A2000 100%); border-bottom: 2px solid var(--gold); }
+.panel-taqlib .panel-header { background: linear-gradient(135deg, #1A1200 0%, #2A2000 100%); border-bottom: 2px solid var(--gold); }
+
+.panel-header-inner { display:flex; align-items:center; gap:20px; }
+.panel-icon { font-size: 48px; }
+.panel-title { font-size: 26px; font-weight: 900; color:var(--gold2); margin-bottom:6px; }
+.panel-tagline { color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 400; line-height:1.5; }
+
+/* Panel Body */
+.panel-body {
+  background: var(--card);
+  border: 1px solid rgba(201,168,30,0.15);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  overflow:hidden;
+}
+
+/* Priority Section */
+.priority-section {
+  padding: 36px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.panel-sakan .section-title { color: var(--gold); }
+.panel-invest .section-title { color: var(--gold); }
+.panel-both .section-title { color: var(--gold); }
+.panel-taqlib .section-title { color: var(--gold); }
+
+.priorities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.priority-item {
+  display:flex; align-items:flex-start; gap:14px;
+  background: #0D0D00;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid rgba(201,168,30,0.15);
+  transition: all 0.2s;
+}
+
+.priority-item:hover { transform:translateX(-3px); }
+
+.priority-num {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size: 14px; font-weight: 900; color:#fff;
+  flex-shrink:0;
+}
+
+.panel-sakan .priority-num { background: var(--gold); color:#000; }
+.panel-invest .priority-num { background: var(--gold); }
+.panel-both .priority-num { background: var(--gold); color:#000; }
+.panel-taqlib .priority-num { background: var(--gold); color:#000; }
+
+.priority-content {}
+.priority-title { font-size: 14px; font-weight: 800; color:#fff; margin-bottom:4px; }
+.priority-desc { font-size: 12px; color: var(--muted); line-height:1.5; }
+
+/* Advice Cards */
+.advice-section {
+  padding: 36px 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.advice-cards {
+  display:flex; flex-direction:column; gap:14px;
+}
+
+.advice-card {
+  display:flex; gap:16px; align-items:flex-start;
+  padding: 20px;
+  border-radius: 14px;
+  border-right: 4px solid;
+}
+
+.panel-sakan .advice-card { border-color: var(--gold); background: #0F0E00; }
+.panel-invest .advice-card { border-color: var(--gold); background: #0F0E00; }
+.panel-both .advice-card { border-color: var(--gold); background: #0F0E00; }
+.panel-taqlib .advice-card { border-color: var(--gold); background: #0F0E00; }
+
+.advice-emoji { font-size: 24px; flex-shrink:0; margin-top:2px; }
+.advice-title { font-size: 15px; font-weight: 800; color:var(--gold2); margin-bottom:6px; }
+.advice-text { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* Warning / Tip Box */
+.tip-box {
+  margin: 0 40px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  display:flex; gap:14px; align-items:flex-start;
+  margin-bottom: 0;
+}
+
+.panel-sakan .tip-box { background: #0F0E00; border: 1px solid rgba(201,168,30,0.3); }
+.panel-invest .tip-box { background: #0F0E00; border: 1px solid rgba(201,168,30,0.3); }
+.panel-both .tip-box { background: #0F0E00; border: 1px solid rgba(201,168,30,0.3); }
+.panel-taqlib .tip-box { background: #0F0E00; border: 1px solid rgba(201,168,30,0.3); }
+
+.tip-icon { font-size: 22px; flex-shrink:0; }
+.tip-content {}
+.tip-title { font-size: 13px; font-weight: 800; margin-bottom: 4px; }
+.panel-sakan .tip-title { color: var(--gold); }
+.panel-invest .tip-title { color: var(--gold); }
+.panel-both .tip-title { color: var(--gold); }
+.panel-taqlib .tip-title { color: var(--gold); }
+.tip-text { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* Comparison Table */
+.compare-section {
+  padding: 36px 40px;
+}
+
+.compare-table {
+  width:100%; border-collapse:collapse;
+  border-radius: 12px; overflow:hidden;
+  border: 1px solid var(--border);
+}
+
+.compare-table th {
+  padding: 14px 20px;
+  font-size: 13px; font-weight: 700;
+  color: #fff; text-align:right;
+}
+
+.panel-sakan .compare-table th { background: var(--gold); color:#000; }
+.panel-invest .compare-table th { background: var(--gold); }
+.panel-both .compare-table th { background: var(--gold); color:#000; }
+.panel-taqlib .compare-table th { background: var(--gold); color:#000; }
+
+.compare-table td {
+  padding: 14px 20px;
+  font-size: 13px; color: var(--text);
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:nth-child(even) td { background: #0D0D00; }
+
+.td-label { font-weight: 700; color: var(--gold2); min-width: 140px; }
+
+/* CTA */
+.cta-section {
+  padding: 36px 40px;
+  background: #0D0D00;
+  border-top: 1px solid rgba(201,168,30,0.2);
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  flex-wrap:wrap;
+}
+
+.cta-text h3 { font-size: 18px; font-weight: 800; color:#fff; margin-bottom:6px; }
+.cta-text p { font-size: 13px; color:var(--muted); }
+
+.btn-cta {
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 14px 28px; border-radius: 12px;
+  font-family:'Tajawal',sans-serif;
+  font-size: 15px; font-weight: 700;
+  border:none; cursor:pointer; transition:all 0.3s;
+  color:#fff; white-space:nowrap;
+}
+
+.panel-sakan .btn-cta { background: var(--gold); color:#000; }
+.panel-invest .btn-cta { background: var(--gold); }
+.panel-both .btn-cta { background: var(--gold); color:#000; }
+.panel-taqlib .btn-cta { background: var(--gold); color:#000; }
+.btn-cta:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+
+/* Empty State */
+.empty-state {
+  text-align:center; padding: 80px 24px;
+}
+.empty-icon { font-size:64px; margin-bottom:20px; }
+.empty-title { font-size:22px; font-weight:800; color:#fff; margin-bottom:10px; }
+.empty-sub { color:var(--muted); font-size:15px; }
+
+@media (max-width:640px) {
+  header { padding: 16px 20px; }
+  .goal-tabs { grid-template-columns: 1fr 1fr; }
+  .panel-header { padding: 24px 20px; }
+  .priority-section, .advice-section, .compare-section, .cta-section { padding: 24px 20px; }
+  .priorities-grid { grid-template-columns: 1fr; }
+  .tip-box { margin: 0 20px; }
+  .cta-section { flex-direction:column; }
+  .btn-cta { width:100%; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <svg width="36" height="32" viewBox="0 0 100 80" fill="none">
+      <line x1="10" y1="72" x2="90" y2="72" stroke="#C9A81E" stroke-width="2.5"/>
+      <rect x="16" y="42" width="21" height="30" fill="#7A5C10" opacity="0.9"/>
+      <rect x="39" y="16" width="22" height="56" fill="#C9A81E"/>
+      <line x1="50" y1="16" x2="50" y2="5" stroke="#C9A81E" stroke-width="2"/>
+      <rect x="47" y="3" width="6" height="5" fill="#C9A81E"/>
+      <rect x="63" y="37" width="19" height="35" fill="#7A5C10" opacity="0.9"/>
+    </svg>
+    <div>
+      <div style="font-size:18px;font-weight:900;color:#fff;letter-spacing:3px;line-height:1;">SALEH</div>
+      <div style="font-size:8px;color:#C9A81E;letter-spacing:2px;font-weight:600;">CONTRACTING &amp; REAL ESTATE</div>
+    </div>
+  </div>
+  <div class="header-badge" id="regionBadge">التجمع الخامس ✦</div>
+</header>
+
+<!-- Region Selector -->
+<div class="region-bar">
+  <div class="region-label">اختار المنطقة:</div>
+  <button class="region-btn active" onclick="selectRegion('tagammu')" id="rbtn-tagammu">🏙️ التجمع الخامس</button>
+  <button class="region-btn" onclick="selectRegion('october')" id="rbtn-october">🌆 أكتوبر</button>
+  <button class="region-btn" onclick="selectRegion('sokhna')" id="rbtn-sokhna">🌊 السخنة</button>
+  <button class="region-btn" onclick="selectRegion('sahel')" id="rbtn-sahel">🏖️ الساحل الشمالي</button>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">مستشارك الشخصي</div>
+  <h1>إيه <em>هدفك</em> من الوحدة؟</h1>
+  <p id="heroSub">اختار هدفك وهنديلك نصايح مخصصة بالظبط ليك — مش كلام عام</p>
+</div>
+
+<div class="selector-wrap">
+  <div class="selector-label">اختار واحدة</div>
+  <div class="goal-tabs">
+    <div class="goal-tab" id="tab-sakan" onclick="selectGoal('sakan')">
+      <div class="check-mark">✓</div>
+      <span class="tab-icon">🏡</span>
+      <div class="tab-title">سكن أساسي</div>
+      <div class="tab-sub">هسكن فيه أنا وعيلتي</div>
+    </div>
+    <div class="goal-tab" id="tab-invest" onclick="selectGoal('invest')">
+      <div class="check-mark">✓</div>
+      <span class="tab-icon">📈</span>
+      <div class="tab-title">استثمار</div>
+      <div class="tab-sub">عايز عائد وزيادة في القيمة</div>
+    </div>
+    <div class="goal-tab" id="tab-both" onclick="selectGoal('both')">
+      <div class="check-mark">✓</div>
+      <span class="tab-icon">💎</span>
+      <div class="tab-title">سكن + استثمار</div>
+      <div class="tab-sub">الاتنين مع بعض</div>
+    </div>
+    <div class="goal-tab" id="tab-taqlib" onclick="selectGoal('taqlib')">
+      <div class="check-mark">✓</div>
+      <span class="tab-icon">🔄</span>
+      <div class="tab-title">تقليب</div>
+      <div class="tab-sub">اشتري وابيع بربح</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-area">
+
+  <!-- Empty State -->
+  <div class="panel visible" id="panel-empty">
+    <div class="empty-state">
+      <div class="empty-icon">☝️</div>
+      <div class="empty-title">اختار هدفك من فوق</div>
+      <div class="empty-sub">وهيطلعلك دليل كامل مخصص ليك</div>
+    </div>
+  </div>
+
+  <!-- SAKAN Panel -->
+  <div class="panel panel-sakan" id="panel-sakan">
+    <div class="panel-header">
+      <div class="panel-header-inner">
+        <div class="panel-icon">🏡</div>
+        <div>
+          <div class="panel-title">أنت عايز سكن — ركز على الراحة والاستقرار</div>
+          <div class="panel-tagline">مش لازم الأرخص ولا الأغلى — الأنسب لحياتك ومحتاجاتك</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="priority-section">
+        <div class="section-title">الأولويات بالترتيب</div>
+        <div class="priorities-grid">
+          <div class="priority-item">
+            <div class="priority-num">1</div>
+            <div class="priority-content">
+              <div class="priority-title">الموقع والقرب من حياتك</div>
+              <div class="priority-desc">المدرسة، الشغل، الأهل — المسافة اليومية بتأثر على حياتك كلها</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">2</div>
+            <div class="priority-content">
+              <div class="priority-title">مساحة تناسب عيلتك</div>
+              <div class="priority-desc">متشتريش أوضتين وانت محتاج 3 — فكر في 5 سنين جاية</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">3</div>
+            <div class="priority-content">
+              <div class="priority-title">الأمان والخدمات</div>
+              <div class="priority-desc">كمبوند بأمن وحمام سباحة ونادي — ده بيأثر على جودة حياتك يومياً</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">4</div>
+            <div class="priority-content">
+              <div class="priority-title">موعد التسليم</div>
+              <div class="priority-desc">لو عايز تسكن قريب — دور على تسليم فوري مش 2027</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="advice-section">
+        <div class="section-title">نصايح ذهبية للسكن</div>
+        <div class="advice-cards">
+          <div class="advice-card">
+            <div class="advice-emoji">👁️</div>
+            <div>
+              <div class="advice-title">زور الكمبوند أكتر من مرة</div>
+              <div class="advice-text">مرة الصبح ومرة المغرب — شوف الزحمة والضوضاء والجيران. الصور على النت مش بتقول كل حاجة.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">💰</div>
+            <div>
+              <div class="advice-title">خلي القسط مريح مش ضاغط</div>
+              <div class="advice-text">القسط المثالي مش أكتر من 30% من دخلك الشهري — لو أكتر من كده هتتعب في حياتك اليومية.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">📋</div>
+            <div>
+              <div class="advice-title">اتأكد من العقد والتسجيل</div>
+              <div class="advice-text">عقد موثق، خطاب ضمان بنكي، وتسجيل في الشهر العقاري — ده اللي بيحميك من أي مشكلة.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-bottom:0; margin-top:0; padding:20px 40px;">
+        <div class="tip-icon">💡</div>
+        <div class="tip-content">
+          <div class="tip-title">نصيحة المستشار</div>
+          <div class="tip-text" id="tip-sakan">الناس اللي بتشتري للسكن بتندم لما بتاخد وحدة صغيرة بسبب السعر. المساحة والموقع أهم من الفانتازيا في الكتالوج.</div>
+        </div>
+      </div>
+      <div class="cta-section">
+        <div class="cta-text">
+          <h3>عايز تشوف الوحدات المناسبة ليك؟</h3>
+          <p>هنحدد موعد ونزور مع بعض — مجاناً وبدون أي ضغط</p>
+        </div>
+        <button class="btn-cta" onclick="openWA('سكن')">📞 احجز استشارة مجانية</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVEST Panel -->
+  <div class="panel panel-invest" id="panel-invest">
+    <div class="panel-header">
+      <div class="panel-header-inner">
+        <div class="panel-icon">📈</div>
+        <div>
+          <div class="panel-title">أنت مستثمر — ركز على الأرقام والعائد</div>
+          <div class="panel-tagline">السكن مش شرط — المهم الربح وزيادة قيمة الأصل</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="priority-section">
+        <div class="section-title">الأولويات بالترتيب</div>
+        <div class="priorities-grid">
+          <div class="priority-item">
+            <div class="priority-num">1</div>
+            <div class="priority-content">
+              <div class="priority-title">العائد الإيجاري السنوي</div>
+              <div class="priority-desc">في التجمع العائد الكويس بين 8% و12% سنوياً — تحت ده مش كويس</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">2</div>
+            <div class="priority-content">
+              <div class="priority-title">نمو سعر المتر</div>
+              <div class="priority-desc">مناطق زي التجمع الخامس بترتفع 20-30% سنوياً — الموقع أساسي</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">3</div>
+            <div class="priority-content">
+              <div class="priority-title">سهولة الإيجار</div>
+              <div class="priority-desc">الأوضتين والتلاتة أسرع في الإيجار من الأوضة الواحدة أو الفيلا</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">4</div>
+            <div class="priority-content">
+              <div class="priority-title">سمعة المطور</div>
+              <div class="priority-desc">مطور كبير = وحدة بتتسلم في موعدها وقيمتها بترتفع أسرع</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="advice-section">
+        <div class="section-title">نصايح ذهبية للاستثمار</div>
+        <div class="advice-cards">
+          <div class="advice-card">
+            <div class="advice-emoji">🎯</div>
+            <div>
+              <div class="advice-title">اشتري على الخريطة بدري</div>
+              <div class="advice-text">الوحدة في مرحلة الحفر بتكون أرخص بـ 30-40% — لما تتسلم تكون ربحت من غير ما تعمل حاجة.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">📊</div>
+            <div>
+              <div class="advice-title">احسب العائد قبل ما تشتري</div>
+              <div class="advice-text">السعر الكلي ÷ الإيجار السنوي المتوقع = سنين الاسترداد. أقل من 12 سنة = استثمار كويس في التجمع.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">🏢</div>
+            <div>
+              <div class="advice-title">التشطيب الكامل يرفع الإيجار</div>
+              <div class="advice-text">وحدة بتشطيب كامل بتتأجر أسرع بـ 50% وبسعر أعلى بـ 20-30% — الاستثمار الزيادي في التشطيب بيرجع بسرعة.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-bottom:0; margin-top:0; padding:20px 40px;">
+        <div class="tip-icon">⚠️</div>
+        <div class="tip-content">
+          <div class="tip-title">تحذير المستثمر</div>
+          <div class="tip-text" id="tip-invest">متشتريش في منطقة جديدة مش فيها خدمات لسه — العائد الإيجاري بيتأخر جداً لو المنطقة مش مكتملة. ابدأ بمناطق مكتملة.</div>
+        </div>
+      </div>
+      <div class="compare-section">
+        <div class="section-title">مقارنة العائد الاستثماري</div>
+        <table class="compare-table"><thead>
+          <tr><th>النوع</th><th>العائد الإيجاري</th><th>نمو القيمة</th></tr>
+          </thead><tbody id="tbl-invest">
+          <tr><td class="td-label">شقة تشطيب كامل</td>
+            <td>9% - 12% سنوياً</td>
+            <td>20% - 30% سنوياً</td>
+          </tr>
+          <tr>
+            <td class="td-label">شقة كور</td>
+            <td>6% - 8% سنوياً</td>
+            <td>15% - 25% سنوياً</td>
+          </tr>
+          <tr>
+            <td class="td-label">تجاري / محل</td>
+            <td>10% - 15% سنوياً</td>
+            <td>25% - 40% سنوياً</td>
+          </tr>
+        </table>
+      </div>
+      <div class="cta-section">
+        <div class="cta-text">
+          <h3>عايز تعرف أفضل فرصة استثمارية دلوقتي؟</h3>
+          <p>عندي 3 فرص مميزة بعائد فوق المتوسط — هشرحهالك تفصيلي</p>
+        </div>
+        <button class="btn-cta" onclick="openWA('استثمار')">💰 اعرف الفرص المتاحة</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTH Panel -->
+  <div class="panel panel-both" id="panel-both">
+    <div class="panel-header">
+      <div class="panel-header-inner">
+        <div class="panel-icon">💎</div>
+        <div>
+          <div class="panel-title">سكن واستثمار — أذكى قرار في السوق</div>
+          <div class="panel-tagline">بتسكن فيه وفي نفس الوقت قيمته بترتفع — ده اللي بيعمله الناس الذكية</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="priority-section">
+        <div class="section-title">الأولويات بالترتيب</div>
+        <div class="priorities-grid">
+          <div class="priority-item">
+            <div class="priority-num">1</div>
+            <div class="priority-content">
+              <div class="priority-title">موقع بيرتفع سعره</div>
+              <div class="priority-desc">اختار منطقة فيها مشاريع جديدة وبنية تحتية بتكبر — السعر بيجري وراها</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">2</div>
+            <div class="priority-content">
+              <div class="priority-title">مطور موثوق بسمعة قوية</div>
+              <div class="priority-desc">بالم هيلز وماونتن فيو ومينا وغيرهم — وحداتهم بترتفع أسرع من غيرها</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">3</div>
+            <div class="priority-content">
+              <div class="priority-title">مناسب للحياة اليومية</div>
+              <div class="priority-desc">قريب من مدرسة، داكتور، سوبر ماركت — عشان الحياة تبقى سهلة</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">4</div>
+            <div class="priority-content">
+              <div class="priority-title">أوضة زيادة للتأجير</div>
+              <div class="priority-desc">لو اخدت 4 أوض وانت محتاج 3 — الأوضة الزيادة ممكن تأجرها وتغطي جزء من القسط</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="advice-section">
+        <div class="section-title">استراتيجية الاتنين</div>
+        <div class="advice-cards">
+          <div class="advice-card">
+            <div class="advice-emoji">🧠</div>
+            <div>
+              <div class="advice-title">اشتري أكبر من احتياجك بأوضة</div>
+              <div class="advice-text">لو محتاج 3 أوض — اشتري 4. الأوضة الزيادة ممكن تأجرها بـ 3,000 إلى 5,000 جنيه شهرياً وتغطي جزء من القسط.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">📍</div>
+            <div>
+              <div class="advice-title">التجمع الخامس = أفضل خيار</div>
+              <div class="advice-text">المنطقة فيها جامعات، مستشفيات، مولات، ومطارات قريبة — ده بيضمن إن القيمة هترتفع والإيجار متوفر دايماً.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">📅</div>
+            <div>
+              <div class="advice-title">خطط لـ 5 سنين على الأقل</div>
+              <div class="advice-text">اللي اشتروا في التجمع 2019 بـ مليون — دلوقتي 3 مليون أو أكتر. الصبر في العقار = ربح مضمون.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-bottom:0; margin-top:0; padding:20px 40px;">
+        <div class="tip-icon">💡</div>
+        <div class="tip-content">
+          <div class="tip-title">الفورمولا المثالية</div>
+          <div class="tip-text">كمبوند كبير + مطور موثوق + موقع نامي + تشطيب كامل = أحسن قرار ممكن تاخده دلوقتي في السوق المصري.</div>
+        </div>
+      </div>
+      <div class="cta-section">
+        <div class="cta-text">
+          <h3>عايز الخيار الأمثل للاتنين مع بعض؟</h3>
+          <p>عندي وحدات نادرة بتجمع الحياة والاستثمار — محدوشش كتير</p>
+        </div>
+        <button class="btn-cta" onclick="openWA('سكن واستثمار')">💎 اتكلم معايا دلوقتي</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAQLIB Panel -->
+  <div class="panel panel-taqlib" id="panel-taqlib">
+    <div class="panel-header">
+      <div class="panel-header-inner">
+        <div class="panel-icon">🔄</div>
+        <div>
+          <div class="panel-title">أنت بتتقلب — ركز على السرعة والهامش</div>
+          <div class="panel-tagline">الهدف تشتري بسعر كويس وتبيع بربح — الوقت هو عدوك الأول</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="priority-section">
+        <div class="section-title">الأولويات بالترتيب</div>
+        <div class="priorities-grid">
+          <div class="priority-item">
+            <div class="priority-num">1</div>
+            <div class="priority-content">
+              <div class="priority-title">اشتري على الخريطة بدري</div>
+              <div class="priority-desc">أول مرحلة طرح = أقل سعر — بتشتري وبتبيع قبل ما تتسلم حتى</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">2</div>
+            <div class="priority-content">
+              <div class="priority-title">مطور بسمعة ترفع السعر</div>
+              <div class="priority-desc">اسم كبير = زيادة في السعر مضمونة — الناس بتدفع أكتر على الاسم</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">3</div>
+            <div class="priority-content">
+              <div class="priority-title">مرونة في شروط البيع</div>
+              <div class="priority-desc">اتأكد إن العقد بيسمح بالتنازل — مش كل العقود بتسمح بالبيع قبل التسليم</div>
+            </div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-num">4</div>
+            <div class="priority-content">
+              <div class="priority-title">سيولة مبدئية كافية</div>
+              <div class="priority-desc">محتاج مقدم + 6 شهور أقساط على الأقل — لو مش متاح متبدأش التقليب</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="advice-section">
+        <div class="section-title">نصايح التقليب الذكي</div>
+        <div class="advice-cards">
+          <div class="advice-card">
+            <div class="advice-emoji">⚡</div>
+            <div>
+              <div class="advice-title">ابدأ بأقل مقدم ممكن</div>
+              <div class="advice-text">الهدف متربطش فلوسك كتير — دور على مشاريع بمقدم 5% أو 10% وأقساط مريحة. ده بيخليك تشتري أكتر من وحدة.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">📰</div>
+            <div>
+              <div class="advice-title">تابع إعلانات الطرح الجديد</div>
+              <div class="advice-text">أول يوم في الطرح = أقل سعر في تاريخ المشروع. بعد 6 شهور بيبقى 20% أو 30% أغلى — الوقت هو الربح.</div>
+            </div>
+          </div>
+          <div class="advice-card">
+            <div class="advice-emoji">🤝</div>
+            <div>
+              <div class="advice-title">ابني شبكة مشترين جاهزين</div>
+              <div class="advice-text">قبل ما تشتري — اعرف حد ممكن يشتري منك. التقليب الناجح بيبدأ بمشتري جاهز مش بالبحث بعد الشراء.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tip-box" style="margin-bottom:0; margin-top:0; padding:20px 40px;">
+        <div class="tip-icon">⚠️</div>
+        <div class="tip-content">
+          <div class="tip-title">تحذير مهم</div>
+          <div class="tip-text">التقليب فيه ضريبة مكسب رأس المال — اتكلم مع محاسب قبل ما تبيع. وبعض العقود فيها غرامة لو بعت قبل التسليم.</div>
+        </div>
+      </div>
+      <div class="compare-section">
+        <div class="section-title">أفضل مراحل الشراء للتقليب</div>
+        <table class="compare-table">
+          <tr>
+            <th>المرحلة</th>
+            <th>الهامش المتوقع</th>
+            <th>المخاطرة</th>
+          </tr>
+          <tr><td class="td-label">أول طرح (Presale)</td><td>25% - 40%</td><td>متوسطة</td></tr>
+          <tr><td class="td-label">مرحلة الإنشاء</td><td>15% - 25%</td><td>منخفضة</td></tr>
+          <tr><td class="td-label">قبل التسليم بـ 6 شهور</td><td>10% - 15%</td><td>منخفضة جداً</td></tr>
+        </table>
+      </div>
+      <div class="cta-section">
+        <div class="cta-text">
+          <h3>عايز تعرف الطروح الجديدة قبل الناس؟</h3>
+          <p>عندي إشعارات بأول طرح قبل ما يطلع للعامة — اشترك دلوقتي</p>
+        </div>
+        <button class="btn-cta" onclick="openWA('تقليب')">🔔 اشترك في التنبيهات</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+const regions = {
+  tagammu: {
+    name: 'التجمع الخامس',
+    badge: 'التجمع الخامس ✦',
+    emoji: '🏙️',
+    hero: 'نصايح مخصصة للتجمع الخامس — مش كلام عام',
+    sakan: {
+      tip: 'التجمع الخامس فيه أفضل مدارس دولية في مصر — لو عندك أطفال، الموقع من المدرسة أهم حاجة تفكر فيها.',
+      compounds: [
+        ['بالم هيلز', 'هدوء وخضرة، تشطيب راقي', 'عيلة بتدور على استقرار'],
+        ['ماونتن فيو', 'خدمات ممتازة، حمامات سباحة', 'عيلة عايزة حياة نشيطة'],
+        ['ميفيدا', 'فيو مميز، هادي، أمان عالي', 'اللي بيدور على خصوصية'],
+      ]
+    },
+    invest: {
+      tip: 'التجمع الخامس فيه جامعات ومستشفيات ومولات — العائد الإيجاري مضمون ومرتفع على مدار السنة.',
+      returns: [['شقة تشطيب كامل','9%-12%','20%-30%'],['شقة كور','6%-8%','15%-25%'],['تجاري / محل','10%-15%','25%-40%']]
+    },
+    both: {
+      compounds: [['بالم هيلز التجمع','⭐⭐⭐⭐⭐','⭐⭐⭐⭐'],['ماونتن فيو','⭐⭐⭐⭐','⭐⭐⭐⭐⭐'],['ميفيدا','⭐⭐⭐⭐⭐','⭐⭐⭐⭐⭐']]
+    }
+  },
+  october: {
+    name: 'أكتوبر',
+    badge: 'أكتوبر ✦',
+    emoji: '🌆',
+    hero: 'نصايح مخصصة لمدينة أكتوبر — مش كلام عام',
+    sakan: {
+      tip: 'أكتوبر من أهدأ مدن مصر وفيها مستشفيات كبيرة وجامعات — مناسبة جداً للعيلة اللي بتدور على هدوء بسعر معقول.',
+      compounds: [
+        ['ويست تاون', 'تصميم عصري، خدمات متكاملة', 'الشباب والعيلة الصغيرة'],
+        ['سيتي ستارز أكتوبر', 'قريب من المولات والخدمات', 'اللي عايز كل حاجة قريبة'],
+        ['الحي اللاتيني', 'طابع مميز، هادي', 'اللي بيحب الذوق الرفيع'],
+      ]
+    },
+    invest: {
+      tip: 'أكتوبر بتشهد نمو كبير بسبب مشاريع الحكومة الجديدة — الأسعار لسه معقولة والعائد بيرتفع.',
+      returns: [['شقة تشطيب كامل','8%-11%','15%-25%'],['شقة كور','5%-7%','12%-20%'],['تجاري','9%-13%','20%-35%']]
+    },
+    both: {
+      compounds: [['ويست تاون','⭐⭐⭐⭐⭐','⭐⭐⭐⭐'],['الحي اللاتيني','⭐⭐⭐⭐','⭐⭐⭐⭐'],['سيتي ستارز','⭐⭐⭐⭐','⭐⭐⭐⭐⭐']]
+    }
+  },
+  sokhna: {
+    name: 'السخنة',
+    badge: 'العين السخنة ✦',
+    emoji: '🌊',
+    hero: 'نصايح مخصصة للعين السخنة — مش كلام عام',
+    sakan: {
+      tip: 'السخنة مش للسكن الدايم في الغالب — لو بتشتري للسكن خليبالك من خدمات المنطقة على مدار السنة مش بس الصيف.',
+      compounds: [
+        ['بورتو السخنة', 'شاطئ خاص، خدمات فندقية', 'اللي عايز إقامة فاخرة'],
+        ['مياميار السخنة', 'هادي، فيو بحر مميز', 'اللي بيدور على راحة'],
+        ['تلال السخنة', 'تصميم عصري، قريب من القاهرة', 'الأسرة الصغيرة'],
+      ]
+    },
+    invest: {
+      tip: 'السخنة استثمار موسمي — العائد الإيجاري بيكون عالي في الصيف وأقل في الشتاء. حسب ميزانيتك الكلية.',
+      returns: [['شاليه بحر','10%-18% (صيف)','20%-30%'],['فيلا','8%-14%','25%-35%'],['وحدة فندقية','12%-20%','15%-25%']]
+    },
+    both: {
+      compounds: [['بورتو السخنة','⭐⭐⭐⭐','⭐⭐⭐⭐⭐'],['ميامار','⭐⭐⭐⭐⭐','⭐⭐⭐⭐'],['تلال','⭐⭐⭐','⭐⭐⭐⭐']]
+    }
+  },
+  sahel: {
+    name: 'الساحل الشمالي',
+    badge: 'الساحل الشمالي ✦',
+    emoji: '🏖️',
+    hero: 'نصايح مخصصة للساحل الشمالي — مش كلام عام',
+    sakan: {
+      tip: 'الساحل الشمالي في الأصل وجهة صيفية — لو بتشتري للسكن الدايم تأكد من توافر الخدمات طول السنة وقرب المستشفيات.',
+      compounds: [
+        ['هاسيندا باي', 'فاخر جداً، شاطئ مميز', 'اللي عايز الأفخم'],
+        ['مراسي', 'مدينة متكاملة، كل الخدمات', 'العيلة اللي عايزة راحة كاملة'],
+        ['سيدي عبد الرحمن', 'طبيعة خلابة، هادي', 'اللي بيحب الطبيعة'],
+      ]
+    },
+    invest: {
+      tip: 'الساحل الشمالي من أعلى مناطق مصر في نمو الأسعار — اللي اشترى 2018 ربح 3 أضعاف. الطلب بيزيد كل سنة.',
+      returns: [['شاليه صف أول','15%-25% (صيف)','30%-50%'],['شقة داخلية','8%-12%','20%-35%'],['فيلا','10%-18%','35%-60%']]
+    },
+    both: {
+      compounds: [['هاسيندا باي','⭐⭐⭐⭐⭐','⭐⭐⭐⭐⭐'],['مراسي','⭐⭐⭐⭐⭐','⭐⭐⭐⭐⭐'],['سيدي عبد الرحمن','⭐⭐⭐⭐','⭐⭐⭐⭐']]
+    }
+  }
+};
+
+let currentRegion = 'tagammu';
+let currentGoal = null;
+
+function selectRegion(r) {
+  currentRegion = r;
+  // Update buttons
+  ['tagammu','october','sokhna','sahel'].forEach(x => {
+    document.getElementById('rbtn-'+x).classList.toggle('active', x===r);
+  });
+  // Update badge
+  document.getElementById('regionBadge').textContent = regions[r].badge;
+  // Update hero sub
+  document.getElementById('heroSub') && (document.getElementById('heroSub').textContent = regions[r].hero);
+  // Update compare tables and tips
+  updateRegionContent(r);
+  // Re-render current goal if selected
+  if(currentGoal) selectGoal(currentGoal);
+}
+
+function updateRegionContent(r) {
+  const reg = regions[r];
+
+  // Sakan tip
+  const sakanTip = document.getElementById('tip-sakan');
+  if(sakanTip) sakanTip.textContent = reg.sakan.tip;
+
+  // Invest returns table
+  const investTbody = document.getElementById('tbl-invest');
+  if(investTbody) investTbody.innerHTML = reg.invest.returns.map(c =>
+    `<tr><td class="td-label">${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td></tr>`
+  ).join('');
+
+  // Invest tip
+  const investTip = document.getElementById('tip-invest');
+  if(investTip) investTip.textContent = reg.invest.tip;
+
+  // Update region name in CTA sections
+  document.querySelectorAll('.region-name-dynamic').forEach(el => {
+    el.textContent = reg.name;
+  });
+}
+
+function selectGoal(goal) {
+  currentGoal = goal;
+  ['sakan','invest','both','taqlib'].forEach(g => {
+    document.getElementById('tab-'+g).className = 'goal-tab';
+  });
+  document.getElementById('tab-'+goal).classList.add('active-'+goal);
+  document.getElementById('panel-empty').classList.remove('visible');
+  ['sakan','invest','both','taqlib'].forEach(g => {
+    document.getElementById('panel-'+g).classList.remove('visible');
+  });
+  const p = document.getElementById('panel-'+goal);
+  p.classList.add('visible');
+  setTimeout(() => { p.scrollIntoView({ behavior:'smooth', block:'start' }); }, 100);
+}
+
+function openWA(goal) {
+  const reg = regions[currentRegion];
+  const msg = encodeURIComponent(`أهلاً، أنا مهتم بـ "${goal}" في ${reg.name} وعايز أعرف أكتر 🏠`);
+  window.open(`https://wa.me/201010892928?text=${msg}`, '_blank');
+}
+
+// Init
+updateRegionContent('tagammu');
+</script>
+<div style="text-align:center;padding:20px;border-top:1px solid rgba(201,168,30,0.15);margin-top:0;">
+  <div style="display:inline-flex;align-items:center;gap:10px;">
+    <svg width="22" height="20" viewBox="0 0 100 80" fill="none">
+      <line x1="10" y1="72" x2="90" y2="72" stroke="#C9A81E" stroke-width="3"/>
+      <rect x="16" y="42" width="21" height="30" fill="#7A5C10"/>
+      <rect x="39" y="16" width="22" height="56" fill="#C9A81E"/>
+      <rect x="63" y="37" width="19" height="35" fill="#7A5C10"/>
+    </svg>
+    <span style="font-size:11px;color:rgba(201,168,30,0.5);letter-spacing:3px;">SALEH CONTRACTING &amp; REAL ESTATE</span>
+    <span style="font-size:11px;color:rgba(255,255,255,0.2);letter-spacing:1px;">01010892928</span>
+  </div>
+</div>
+</body>
+</html>
